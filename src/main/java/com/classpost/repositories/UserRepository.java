@@ -10,7 +10,7 @@ import com.classpost.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 	
-	@Query("SELECT u FROM User u where u.username = :username") 
+	@Query("SELECT u FROM User u where LOWER(u.username) = :username") 
     User findByUsername(@Param("username") String username);
 
 }

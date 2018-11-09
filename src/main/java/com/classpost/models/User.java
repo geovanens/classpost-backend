@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -39,6 +38,9 @@ public class User {
 	@NotNull(message = "lastName can not be null")
 	@NotEmpty(message = "lastName can not be empty")
 	private String lastName;
+	
+	@Column(name = "image", columnDefinition="TEXT")
+	private String image;
 	
 	@Column(name = "createDate")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
@@ -87,16 +89,13 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-	@Lob
-	@Column(name = "image")
-	private byte[] image;
 
 }

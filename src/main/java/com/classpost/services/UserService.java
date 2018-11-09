@@ -26,7 +26,7 @@ public class UserService {
 
 	public User update(User user) throws Exception {
 		User userUsername = this.findByUsername(user.getUsername());
-		if (userUsername.getUsername().equals(user.getUsername()) && !userUsername.getEmail().equals(user.getEmail())) {
+		if (userUsername != null && userUsername.getUsername().equals(user.getUsername()) && !userUsername.getEmail().equals(user.getEmail())) {
 			throw new Exception("Username já cadastrado para outro usuário");
 		}
 		User saved = this.userRepository.getOne(user.getEmail());
@@ -39,6 +39,11 @@ public class UserService {
 
 	public User findByUsername(String username) {
 		return this.userRepository.findByUsername(username);
+	}
+
+	public User delete(User user) {
+		this.userRepository.delete(user);
+		return user;
 	}
 
 }

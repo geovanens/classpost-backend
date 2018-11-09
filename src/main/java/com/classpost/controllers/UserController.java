@@ -38,12 +38,17 @@ public class UserController {
 		return this.userService.update(user);
 	}
 	
-	@RequestMapping(value = "/exist-username/{username}", method = RequestMethod.GET)
-	public Map<String, Boolean> update(@PathVariable String username) {
+	@RequestMapping(value = "/exist/{username}", method = RequestMethod.GET)
+	public Map<String, Boolean> existUsername(@PathVariable String username) {
 		HashMap<String, Boolean> result = new HashMap<>();
-		User find = this.userService.findByUsername(username);
+		User find = this.userService.findByUsername(username.toLowerCase());
 		result.put("result", find != null);
 		return result;
 	}
+	
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
+    public User delete(@RequestBody User user) {
+	    return this.userService.delete(user);
+    }
 
 }
