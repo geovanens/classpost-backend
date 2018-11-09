@@ -33,6 +33,7 @@ public class UserService {
 		saved.setUsername(user.getUsername());
 		saved.setFirstName(user.getFirstName());
 		saved.setLastName(user.getLastName());
+		saved.setImage(user.getImage());
 		this.userRepository.save(saved);
 		return saved;
 	}
@@ -40,5 +41,10 @@ public class UserService {
 	public User findByUsername(String username) {
 		return this.userRepository.findByUsername(username);
 	}
+
+	public User delete(User user) {
+	    this.userRepository.delete(user);
+	    return user;
+    }
 
 }

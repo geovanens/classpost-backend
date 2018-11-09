@@ -40,6 +40,15 @@ public class User {
 	@NotEmpty(message = "lastName can not be empty")
 	private String lastName;
 	
+	@Lob
+	@Column(name = "image")
+	@NotNull(message = "image can not be null")
+	@NotEmpty(message = "image can not be empty")
+	private byte[] image;
+	
+	@Column(name = "note")
+	private Double note = 5.0;
+
 	@Column(name = "createDate")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
@@ -94,9 +103,13 @@ public class User {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
+	
+	public Double getNote() {
+		return note;
+	}
 
-	@Lob
-	@Column(name = "image")
-	private byte[] image;
+	public void setNote(Double note) {
+		this.note = note;
+	}
 
 }
