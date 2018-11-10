@@ -33,6 +33,7 @@ public class UserService {
 		saved.setUsername(user.getUsername());
 		saved.setFirstName(user.getFirstName());
 		saved.setLastName(user.getLastName());
+		saved.setImage(user.getImage());
 		this.userRepository.save(saved);
 		return saved;
 	}

@@ -26,6 +26,11 @@ public class PostController {
 		return this.postService.getAll();
 	}
 	
+	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
+	public List<Post> findByEmail(String email) {
+		return this.postService.findByEmail(email);
+	}
+	
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Post save(@RequestBody Post post) {
 		return this.postService.save(post);
