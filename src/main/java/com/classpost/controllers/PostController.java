@@ -27,7 +27,7 @@ public class PostController {
 	}
 	
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
-	public List<Post> findByEmail(String email) {
+	public List<Post> findByEmail(@PathVariable String email) {
 		return this.postService.findByEmail(email);
 	}
 	
