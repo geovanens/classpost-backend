@@ -51,9 +51,9 @@ public class UserController {
 	    return this.userService.delete(user);
     }
 	
-	@RequestMapping(value = "/autenticate", method = RequestMethod.GET)
-	public Map<String, Boolean> autenticate(@PathVariable Map<String, String> userLogin) {
-		return this.userService.autenticate(userLogin);
+	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
+	public User findByEmail(@PathVariable String email) {
+		return this.userService.findByEmail(email);
 	}
 	
 
