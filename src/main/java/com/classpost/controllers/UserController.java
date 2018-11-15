@@ -50,5 +50,11 @@ public class UserController {
     public User delete(@RequestBody User user) {
 	    return this.userService.delete(user);
     }
+	
+	@RequestMapping(value = "/autenticate", method = RequestMethod.GET)
+	public Map<String, Boolean> autenticate(@PathVariable Map<String, String> userLogin) {
+		return this.userService.autenticate(userLogin);
+	}
+	
 
 }

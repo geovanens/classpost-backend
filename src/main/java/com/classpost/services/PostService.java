@@ -1,7 +1,9 @@
 package com.classpost.services;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,34 @@ public class PostService {
 	public Post delete(Post post) {
 		this.postRepository.delete(post);
 		return post;
+	}
+
+	public Post like(Long id) {
+		Post saved = this.postRepository.getOne(id);
+		saved.like();
+		this.postRepository.save(saved);
+		return saved;
+	}
+	
+	public Post unlike(Long id) {
+		Post saved = this.postRepository.getOne(id);
+		saved.unlike();
+		this.postRepository.save(saved);
+		return saved;
+	}
+	
+	public Map<String, Double> getAverage(Long id) {
+		Post saved = this.postRepository.getOne(id);
+		HashMap<String, Double> result = new HashMap<>();
+		result.put("average", saved.averageNotes());
+		return result;
+	}
+
+	public Post addNote(Long id, Double note) {
+		Post saved = this.postRepository.getOne(id);
+		saved.addNote(note);
+		this.postRepository.save(saved);
+		return saved;
 	}
 
 }

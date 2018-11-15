@@ -133,4 +133,27 @@ public class Post {
 		this.createDate = createDate;
 	}
 
+	public void like() {
+		this.positive++;
+	}
+	
+	public void unlike() {
+		this.negative++;
+	}
+	
+	public void addNote(Double note) {
+		this.notes.add(note);
+	}
+	
+	public Double averageNotes() {
+		Double sum = new Double(0);
+		if (!this.notes.isEmpty()) {
+			for (Double note: this.notes) {
+				sum += note;
+			}
+			sum /= this.notes.size();		
+		}
+		return sum;
+	}
+
 }

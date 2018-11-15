@@ -1,7 +1,9 @@
 package com.classpost.services;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,7 @@ public class UserService {
 		saved.setFirstName(user.getFirstName());
 		saved.setLastName(user.getLastName());
 		saved.setImage(user.getImage());
+		saved.setPassword(user.getPassword());
 		this.userRepository.save(saved);
 		return saved;
 	}
@@ -45,6 +48,18 @@ public class UserService {
 	public User delete(User user) {
 		this.userRepository.delete(user);
 		return user;
+	}
+
+	public Map<String, Boolean> autenticate(Map<String, String> userLogin) {
+		HashMap<String, Boolean> result = new HashMap<>();
+		User user = this.userRepository.findById(userLogin.get("email")).get();
+		if (user != null && user.getPassword().equals(userLogin.get("password"))) {
+			result.put("result", true);
+		}
+		else {
+			result.put("result", false);
+		}
+		return result;
 	}
 
 }

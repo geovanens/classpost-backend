@@ -45,5 +45,20 @@ public class PostController {
     public Post delete(@RequestBody Post post) {
 	    return this.postService.delete(post);
     }
+	
+	@RequestMapping(value = "/{id}/like", method = RequestMethod.PUT)
+    public Post like(@PathVariable Long id) {
+	    return this.postService.like(id);
+    }
+	
+	@RequestMapping(value = "/{id}/unlike", method = RequestMethod.PUT)
+    public Post unlike(@PathVariable Long id) {
+	    return this.postService.unlike(id);
+    }
+	
+	@RequestMapping(value = "note/{id}/{note}", method = RequestMethod.PUT)
+    public Post unlike(@PathVariable Long id, @PathVariable Double note) {
+	    return this.postService.addNote(id, note);
+    }
 
 }

@@ -42,6 +42,11 @@ public class User {
 	@Column(name = "image", columnDefinition="TEXT")
 	private String image;
 	
+	@Column(name = "password")
+	@NotNull(message = "password can not be null")
+	@NotEmpty(message = "password can not be empty")
+	private String password;
+
 	@Column(name = "createDate")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
@@ -79,6 +84,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public LocalDateTime getCreateDate() {
