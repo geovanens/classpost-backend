@@ -50,16 +50,8 @@ public class UserService {
 		return user;
 	}
 
-	public Map<String, Boolean> autenticate(Map<String, String> userLogin) {
-		HashMap<String, Boolean> result = new HashMap<>();
-		User user = this.userRepository.findById(userLogin.get("email")).get();
-		if (user != null && user.getPassword().equals(userLogin.get("password"))) {
-			result.put("result", true);
-		}
-		else {
-			result.put("result", false);
-		}
-		return result;
+	public User findByEmail(String email) {
+		return this.userRepository.findById(email).get();
 	}
 
 }
